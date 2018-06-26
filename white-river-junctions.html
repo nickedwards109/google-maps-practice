@@ -1,0 +1,91 @@
+<!-- This map shows markers on every train track junction in the town of White River Junction, VT. -->
+<!-- You will need to put a valid Google Maps API Key in place of API_KEY. -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Marker Clustering</title>
+    <style>
+      #map {
+        height: 100%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+
+      	// Instantiate a map
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: {lat: 43.648622, lng: -72.318689}
+        });
+
+        // Define the coordinates of train track junctions in White River Junction
+        var junctions = [
+          { lat: 43.632083, lng: -72.330857 },
+          { lat: 43.635656, lng: -72.329498 },
+          { lat: 43.638394, lng: -72.325135 },
+          { lat: 43.638622, lng: -72.324616 },
+          { lat: 43.639816, lng: -72.320606 },
+          { lat: 43.641724, lng: -72.318762 },
+          { lat: 43.641940, lng: -72.318490 },
+          { lat: 43.642213, lng: -72.318328 },
+          { lat: 43.643048, lng: -72.317783 },
+          { lat: 43.643520, lng: -72.317609 },
+          { lat: 43.644479, lng: -72.317255 },
+          { lat: 43.645491, lng: -72.316995 },
+          { lat: 43.646107, lng: -72.316886 },
+          { lat: 43.647218, lng: -72.314626 },
+          { lat: 43.648537, lng: -72.316968 },
+          { lat: 43.648794, lng: -72.316879 },
+          { lat: 43.647699, lng: -72.317808 },
+          { lat: 43.648142, lng: -72.318027 },
+          { lat: 43.649604, lng: -72.319604 },
+          { lat: 43.650101, lng: -72.320387 },
+          { lat: 43.650297, lng: -72.320702 },
+          { lat: 43.652393, lng: -72.325782 },
+          { lat: 43.652664, lng: -72.326494 },
+          { lat: 43.652985, lng: -72.327243 },
+          { lat: 43.653382, lng: -72.328260 },
+          { lat: 43.653539, lng: -72.328630 },
+          { lat: 43.654125, lng: -72.329886 },
+          { lat: 43.654272, lng: -72.330227 },
+          { lat: 43.654457, lng: -72.330553 },
+          { lat: 43.655925, lng: -72.333717 },
+          { lat: 43.656050, lng: -72.334103 },
+          { lat: 43.656289, lng: -72.334684 },
+          { lat: 43.656617, lng: -72.335331 }
+        ];
+
+        // Instantiate a marker for each junction
+        var markers = junctions.map(function(junction) {
+          return new google.maps.Marker({
+            position: {
+              lat: junction.lat,
+              lng: junction.lng
+            },
+            map: map
+          });
+        });
+
+        // Group the markers together in the UI
+        var markerCluster = new MarkerClusterer(map, markers,
+        	  {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
+        	);
+      }
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap">
+    </script>
+  </body>
+</html>
